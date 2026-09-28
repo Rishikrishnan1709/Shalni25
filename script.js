@@ -1092,14 +1092,18 @@
       document.body.appendChild(lantern);
       
       // Send wish secretly to ntfy.sh
-      fetch('https://ntfy.sh/shalini_wish_rishi_25', {
+      fetch('https://ntfy.sh/', {
         method: 'POST',
-        body: text,
+        body: JSON.stringify({
+          topic: 'shalini_wish_rishi_25',
+          message: text,
+          title: 'Shalini made a wish! 🏮✨',
+          tags: ['sparkles', 'tada']
+        }),
         headers: {
-          'Title': 'Shalini made a wish! 🏮✨',
-          'Tags': 'sparkles,tada'
+          'Content-Type': 'application/json'
         }
-      }).catch(err => console.log('Wish sent'));
+      }).catch(err => console.error('Wish error:', err));
 
       lanternWishInput.value = '';
       lanternWishInput.placeholder = "Wish released! ✨";
