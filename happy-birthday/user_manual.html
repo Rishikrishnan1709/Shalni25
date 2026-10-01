@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Manual</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Playfair+Display:ital,wght@0,600;1,600&display=swap');
+
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: #1a1a2e;
+      font-family: 'Outfit', sans-serif;
+    }
+
+    .card {
+      background: linear-gradient(145deg, #FFFBFC, #FFF0F5);
+      width: 100%;
+      max-width: 450px;
+      border-radius: 24px;
+      padding: 40px 30px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5), inset 0 0 0 8px rgba(255,255,255,0.5);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Cute washi tape at the top */
+    .washi-tape {
+      position: absolute;
+      top: -15px;
+      left: 50%;
+      transform: translateX(-50%) rotate(-2deg);
+      width: 120px;
+      height: 40px;
+      background: rgba(255, 182, 193, 0.6);
+      border-radius: 4px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      backdrop-filter: blur(4px);
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      color: #ff6b81;
+      text-align: center;
+      font-size: 26px;
+      margin-top: 10px;
+      margin-bottom: 5px;
+      line-height: 1.2;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #747d8c;
+      font-size: 14px;
+      margin-bottom: 30px;
+      font-weight: 300;
+    }
+
+    .list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .item {
+      display: flex;
+      gap: 15px;
+      align-items: flex-start;
+      background: white;
+      padding: 15px;
+      border-radius: 16px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+      border: 1px solid rgba(255, 107, 129, 0.1);
+    }
+
+    .emoji-box {
+      font-size: 24px;
+      background: #FFF0F5;
+      width: 45px;
+      height: 45px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 12px;
+      flex-shrink: 0;
+    }
+
+    .text-box h3 {
+      margin: 0 0 4px 0;
+      font-size: 16px;
+      color: #2f3542;
+    }
+
+    .text-box p {
+      margin: 0;
+      font-size: 13.5px;
+      color: #57606f;
+      line-height: 1.4;
+    }
+
+    .highlight {
+      color: #ff4757;
+      font-weight: 600;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="card" id="capture">
+    <div class="washi-tape"></div>
+    <h1>Official User Manual 📜</h1>
+    <div class="subtitle">Please read before entering the universe.</div>
+    
+    <div class="list">
+      
+      <div class="item">
+        <div class="emoji-box">📸</div>
+        <div class="text-box">
+          <h3>The Photos</h3>
+          <p>Don't just stare at one! There are dots below them. <span class="highlight">Swipe or click</span> to see the hidden ones.</p>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="emoji-box">✨</div>
+        <div class="text-box">
+          <h3>The Magic Tags</h3>
+          <p>If you see random compliment pills, <span class="highlight">TAP THEM.</span> They literally explode into confetti.</p>
+        </div>
+      </div>
+
+      
+      <div class="item">
+        <div class="emoji-box">🎂</div>
+        <div class="text-box">
+          <h3>The Cake</h3>
+          <p>You have to physically <span class="highlight">tap the screen</span> to blow out the candles. Don't just sit there waiting!</p>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="emoji-box">🎟️</div>
+        <div class="text-box">
+          <h3>The Secret Voucher</h3>
+          <p>You have to <span class="highlight">rub/scratch your screen</span> like a lottery ticket to reveal it. Yes, manual labor on your birthday.</p>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="emoji-box">🎁</div>
+        <div class="text-box">
+          <h3>The Final Gift</h3>
+          <p><span class="highlight">Tap the gift box</span> until it opens. You don't want to miss what's inside.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>
