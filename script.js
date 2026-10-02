@@ -1542,8 +1542,8 @@
     let messageIndex = 0;
     
     countdownOverlay.addEventListener('click', (e) => {
-      // Don't cycle if it's the start button
-      if (e.target.id === 'btnStartJourney' || !countdownTimer || countdownTimer.style.display === 'none') return;
+      // Don't cycle if it's the start button or inside the password container
+      if (e.target.id === 'btnStartJourney' || e.target.closest('#passwordContainer') || !countdownTimer || countdownTimer.style.display === 'none') return;
       
       countdownTitle.style.opacity = '0';
       setTimeout(() => {
@@ -1553,11 +1553,46 @@
       }, 200); // quick fade out/in
     });
 
+    const passwordContainer = document.getElementById('passwordContainer');
+    const universePassword = document.getElementById('universePassword');
+    const btnSubmitPassword = document.getElementById('btnSubmitPassword');
+    const passwordErrorMsg = document.getElementById('passwordErrorMsg');
+
     btnStartJourney.addEventListener('click', () => {
-      try { getAudioContext(); } catch(e) {}
-      countdownOverlay.classList.add('hidden');
-      startHeroTyping();
+      btnStartJourney.classList.add('hidden');
+      passwordContainer.classList.remove('hidden');
+      universePassword.focus();
     });
+
+    const checkPassword = () => {
+      if (universePassword.value === "ShaShi@2917") {
+        try { getAudioContext(); } catch(e) {}
+        countdownOverlay.classList.add('hidden');
+        startHeroTyping();
+      } else {
+        passwordErrorMsg.classList.remove('hidden');
+        passwordErrorMsg.style.animation = 'none';
+        void passwordErrorMsg.offsetWidth; // trigger reflow
+        passwordErrorMsg.style.animation = 'shake 0.4s ease-in-out';
+        universePassword.value = '';
+        universePassword.focus();
+      }
+    };
+
+    btnSubmitPassword.addEventListener('click', checkPassword);
+    universePassword.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') checkPassword();
+    });
+
+    const togglePassword = document.getElementById('togglePassword');
+    if (togglePassword) {
+      togglePassword.addEventListener('click', () => {
+        const type = universePassword.getAttribute('type') === 'password' ? 'text' : 'password';
+        universePassword.setAttribute('type', type);
+        // Toggle between two eye emojis, one open, one closed, or keep the same but it's standard
+        // (Just keeping the same or toggling emojis is optional, let's keep it simple)
+      });
+    }
   } else {
     startHeroTyping();
   }
