@@ -1234,9 +1234,63 @@
     }
     const slide6 = document.querySelector('.story-slide[data-slide="6"]');
     if (slide6) slide6.scrollTop = 0;
+
+    // Reset password lock
+    const letterPasswordWrap = document.getElementById('letterPasswordWrap');
+    const envelopePromptText = document.getElementById('envelopePromptText');
+    const letterPasswordInput = document.getElementById('letterPasswordInput');
+    const waxSealBtn = document.getElementById('waxSealBtn');
+    
+    if (waxSealBtn) waxSealBtn.style.pointerEvents = 'auto';
+    if (letterPasswordWrap) letterPasswordWrap.style.display = 'none';
+    if (envelopePromptText) envelopePromptText.style.display = 'block';
+    if (letterPasswordInput) letterPasswordInput.value = '';
   }
 
-  if (waxSealBtn) waxSealBtn.addEventListener('click', (e) => { e.stopPropagation(); openEnvelope(); });
+  const letterPasswordWrap = document.getElementById('letterPasswordWrap');
+  const letterPasswordInput = document.getElementById('letterPasswordInput');
+  const btnLetterPasswordSubmit = document.getElementById('btnLetterPasswordSubmit');
+  const letterPasswordError = document.getElementById('letterPasswordError');
+  const envelopePromptText = document.getElementById('envelopePromptText');
+
+  if (waxSealBtn) {
+    waxSealBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (envelopePromptText) envelopePromptText.style.display = 'none';
+      if (letterPasswordWrap) {
+        letterPasswordWrap.style.display = 'flex';
+        waxSealBtn.style.pointerEvents = 'none'; // Prevent double clicking the seal
+      } else {
+        openEnvelope();
+      }
+    });
+  }
+
+  if (btnLetterPasswordSubmit) {
+    btnLetterPasswordSubmit.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (letterPasswordInput && letterPasswordInput.value === 'ShaShi@2917') {
+        if (letterPasswordError) letterPasswordError.style.display = 'none';
+        openEnvelope();
+      } else {
+        if (letterPasswordError) letterPasswordError.style.display = 'block';
+        if (letterPasswordInput) letterPasswordInput.value = '';
+      }
+    });
+  }
+
+  const btnTogglePassword = document.getElementById('btnTogglePassword');
+  if (btnTogglePassword && letterPasswordInput) {
+    btnTogglePassword.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      if (letterPasswordInput.type === 'password') {
+        letterPasswordInput.type = 'text';
+      } else {
+        letterPasswordInput.type = 'password';
+      }
+    });
+  }
 
   const btnEraseThango = document.getElementById('btnEraseThango');
   const thangoText = document.getElementById('thangoText');
@@ -1262,7 +1316,14 @@
       }
     });
   }
-  if (envelopeBox) envelopeBox.addEventListener('click', openEnvelope);
+  if (envelopeBox) {
+    envelopeBox.addEventListener('click', (e) => {
+      // Trigger the wax seal click so the password prompt is shown
+      if (waxSealBtn && waxSealBtn.style.pointerEvents !== 'none') {
+        waxSealBtn.click();
+      }
+    });
+  }
   if (btnRefoldLetter) btnRefoldLetter.addEventListener('click', refoldEnvelope);
 
   /* =========================================================
